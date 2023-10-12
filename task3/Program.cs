@@ -1,4 +1,6 @@
 ﻿// Напишите программу, которая принимает на вход цифру, обозначающую день недели, и проверяет, является ли этот день выходным.
+using System.Globalization;
+
 int readint(string msg)
 {
     System.Console.WriteLine(msg);
@@ -7,10 +9,35 @@ int readint(string msg)
     number = int.Parse(numb);
     return number;
 }
-int number = readint("Введите число обозначающее день недели (от 1 до 7)->");
-if (number == 1)
+
+bool IsWeekend(int weekDay)
 {
-System.Console.WriteLine("Будний день");
+    if (weekDay > 5)
+    {
+        return true;
+    }
+    return false;
 }
-else
-System.Console.WriteLine("Выходной день");
+
+bool ValidateWeekday(int input)
+{
+    if (input > 0 && input <= 7)
+    {
+        return true;
+    }
+System.Console.WriteLine("Это не день недели!");
+return false;
+}
+
+int weekDay = readint("Введите день недели >");
+if (ValidateWeekday(weekDay))
+{
+    if (IsWeekend(weekDay))
+    {
+        System.Console.WriteLine("Выходной");
+    }
+    else
+    {
+        System.Console.WriteLine("Рабочий день");
+    }
+}
